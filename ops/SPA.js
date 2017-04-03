@@ -854,6 +854,10 @@ function fnShowResponseBar( sResponseMessage ){
 	});
 }
 
+
+
+
+
 // Showing notifications:
 function fnNotifyMe( message ) {
 	// Does the browser support notifications?
@@ -881,6 +885,19 @@ function fnNotifyMe( message ) {
 	
 	// At last, if the user has denied notifications, and you 
 	// want to be respectful there is no need to bother them any more.
+}
+
+
+
+fnBlinkTitle();
+// Page title blinking
+function fnBlinkTitle( message ){
+	var iHowManyBlinks = 3;
+	
+	for( var i = 0; i < iHowManyBlinks; i++ ){
+		alert();
+	}
+		
 }
 
 
