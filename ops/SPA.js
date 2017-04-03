@@ -86,7 +86,7 @@ $(document).on("click", ".signUpButtons", function(){
 				if( sResponse.statusOk === true ){
 					
 					// Give notification:
-					fnNotifyMe( 'Welcome on board!' )
+					fnNotifyMe( 'Welcome on board!' );
 					
 					// Play sound:
 					fnPlaySound();
