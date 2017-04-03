@@ -12,5 +12,12 @@
         "sPassword": "a",
         "userType": "superAdmin",
         "sEmail": "a@a.hu"
+    },
+    {
+        "iUserID": 3,
+        "sUsername": "c",
+        "sPassword": "c",
+        "sEmail": "c@c.hu",
+        "userType": "normal"
     }
 ]

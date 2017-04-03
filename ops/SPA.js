@@ -231,6 +231,8 @@ $(document).on("click", ".submitButtons", function(){
 			
 			if( jData.statusOk === true ){
 				fnShowSelectedWindow('#homePageWindow');
+				
+				fnNotifyMe( jData.statusMessage );
 			}
 			
 			// Get response from the server and pass it to response bar showing function:
@@ -850,6 +852,35 @@ function fnShowResponseBar( sResponseMessage ){
 		$(this).fadeOut();
 		$('#response-bar-wrap #message-content').text( '' ); // empty message on hiding
 	});
+}
+
+// Showing notifications:
+function fnNotifyMe( message ) {
+	// Does the browser support notifications?
+	if (!("Notification" in window)) {
+			
+		alert('This browser does not support push notifications.');
+	}
+	
+	// Check whether notification permissions have already been granted
+	else if( Notification.permission === "granted" ) {
+		// If it's okay let's create a notification
+		var notification = new Notification( message );
+	}
+	
+	// Otherwise, we need to ask the user for permission
+	else if( Notification.permission !== "denied" ) {
+		Notification.requestPermission( function( permission ) {
+			
+		  // If the user accepts, let's create a notification
+		  if ( permission === "granted" ) {
+			var notification = new Notification("From now you will get notified.");
+		  }
+		});
+	}
+	
+	// At last, if the user has denied notifications, and you 
+	// want to be respectful there is no need to bother them any more.
 }
 
 
