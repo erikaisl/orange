@@ -240,3 +240,41 @@ div#create-property-column2{
 /* ############################################################################################### */
 /* ############################################################################################### */
 /* ############################################################################################### */
+
+   /*menu */
+#wdw-property-menu {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-flow: column;
+	background-color: #9C27B0;
+	color: white;
+}
+.menu {
+	display: flex;
+	align-items: center;
+	font-family: 'Source Sans Pro', Lucida Grande, sans-serif;
+	background-color: #c5c5c5;
+	justify-content: space-between;
+	width: 100%;
+	color: #ffffff;
+	border-radius: 15px;
+}
+
+.menuItem {
+	display: flex;
+	margin: 0em 1em;
+}
+
+.link.menuItem:hover {
+	color: 4CAF50;
+}
+
+
+.link.menuItem {
+	cursor: pointer;
+}
+
+.logo{
+	padding-left: 20px;
+}

@@ -211,8 +211,13 @@
                 </div>
             </div>
 
+            <div class="icons">
             <div class="map-marker">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <div>    
+            <div class="envelope">    
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+            </div>    
             </div>
 
             <form id="create-property-column2">

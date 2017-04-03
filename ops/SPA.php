@@ -138,6 +138,28 @@
             
         </div>
         
+        <!-- ********************************************************************** -->
+        <!-- ********************************************************************** -->
+        <!-- ********************************************************************** -->
+        
+        <div class="menu MenuHide">
+        <div class="logo">
+            <h1>Mi casa</h1>
+        </div>
+        <div class="menuItem">
+            <div data-go-to="wdw-lists" class="link menuItem notLoggedIn hideFromUser">Lists</div>
+            <div data-go-to="wdw-create-property" class="link menuItem notLoggedIn hideFromUser">Properties</div>
+            <div data-go-to="wdw-create-user" class="link menuItem notLoggedIn hideFromUser">Users</div>
+            <div data-go-to="wdw-sign-in" class="link menuItem loggedIn hideFromUser">Sign in/sign up</div>
+            <div data-go-to="wdw-logout" class="link menuItem btnlogout notLoggedIn hideFromUser">Logout</div>
+        </div>
+    </div>
+
+        <!-- ********************************************************************** -->
+        <!-- ********************************************************************** -->
+        <!-- ********************************************************************** -->
+
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
         <script src="SPA.js"></script>                
