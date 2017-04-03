@@ -1,0 +1,110 @@
+<html>    
+    <head> 
+        <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <style>
+
+        img{
+				width: 200px;
+        		background-color: #ffffff;
+			    border: #c5c5c5 solid 2px;
+			    border-radius: 8px;
+			    padding-left: 3px;
+			    padding-right: 3px;
+			    text-align: center;
+			    display: block;
+			    padding: 8px 8px 7px 8px;
+			    font-size: 16px;
+			    margin-top: 50px;    
+        	 }
+
+        img#extraimage1, #extraimage2 {
+			    width: 80px;
+			    height: 80px
+			}
+
+			img#extraimage1 {
+			    margin-right: 20px;
+			}
+
+		#smallimages{
+				display:flex;
+				flex-direction: row;
+		}
+
+        #property-form {
+			    background-color: #4CAF50;
+			    display: inline-flex;
+			    padding: 20px;
+			    border-radius: 8px;
+			 }
+
+		input, button{   
+			 	background-color: #ffffff;
+			    border: #c5c5c5 solid 2px;
+			    border-radius: 8px;
+			    padding-left: 3px;
+			    padding-right: 3px;
+			    text-align: center;
+			    display: block;
+			    padding: 8px 8px 7px 8px;
+			    font-size: 16px;
+			}
+
+			div#create-property-column2 {
+			    margin-left: 40px;
+			    margin-top: 90px;
+			}
+
+        	
+        </style>
+    </head>
+    
+    <body>
+
+
+    	<div class="wdw windows" id="createPropertyWindow">
+
+	        <form id="property-form">
+	        		<div id="create-property-column1">
+	        		<h1>Create property</h1>
+	        		<img src="house-icon-3.png" alt="property-picture" >
+	        		<div id="smallimages">
+	        		<img id="extraimage1" src="house-icon-3.png" alt="property-picture" >
+	        		<img id="extraimage2" src="house-icon-3.png" alt="property-picture" >
+	        		</div>
+	        		</div>
+
+
+
+	        		
+
+	        		<div id="create-property-column2">
+
+	        		<label for="createPropertyAddress">Address</label>
+	                <input type="text" name="createPropertyAddress" id="createPropertyAddress" required><br>
+
+	                <label for="createPropertySize">Size</label>
+	                <input type="text" name="createPropertySize" id="createPropertySize" required><br>
+
+	                <label for="createPropertyPrice">Price</label>
+	                <input type="text" name="createPropertyPrice" id="createPropertyPrice" required><br>
+
+	                <div class="map-marker">
+	        		<i class="fa fa-map-marker" aria-hidden="true"></i>
+	        		</div>
+	        			                
+	                <input id="createPropertyButton" type="submit" value="Submit">
+	                </div>
+	        </form>    
+        
+    	</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    </body>
+</html>  
+
+
+    	
+      

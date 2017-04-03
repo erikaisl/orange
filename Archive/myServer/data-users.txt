@@ -1,0 +1,38 @@
+[
+    {
+        "sUserID": 1,
+        "sUsername": "a",
+        "sPassword": "a",
+        "userType": "superAdmin"
+    },
+    {
+        "sUserID": 2,
+        "sUsername": "sdkjfhsjkdhfjksdh",
+        "sPassword": "h",
+        "userType": "normal"
+    },
+    {
+        "sUserID": 2,
+        "sUsername": "erika",
+        "sPassword": "h",
+        "userType": "normal"
+    },
+    {
+        "sUserID": 2,
+        "sUsername": "norbert",
+        "sPassword": "h",
+        "userType": "normal"
+    },
+    {
+        "sUserID": 2,
+        "sUsername": "marton",
+        "sPassword": "h",
+        "userType": "normal"
+    },
+    {
+        "sUserID": 2,
+        "sUsername": "jakob",
+        "sPassword": "h",
+        "userType": "normal"
+    }
+]

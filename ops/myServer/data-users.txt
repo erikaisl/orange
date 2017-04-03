@@ -1,0 +1,16 @@
+[
+    {
+        "iUserID": 2,
+        "sUsername": "b",
+        "sPassword": "b",
+        "userType": "normal",
+        "sEmail": "b@a.dk"
+    },
+    {
+        "iUserID": 2,
+        "sUsername": "a",
+        "sPassword": "a",
+        "userType": "superAdmin",
+        "sEmail": "a@a.hu"
+    }
+]

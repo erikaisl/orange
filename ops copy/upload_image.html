@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TESTS</title>
+</head>
+<body>
+
+<img id="imgOriginal" src="1.jpg">
+
+<button id="btnEdit">EDIT</button>
+
+
+<img id="imgEdit" src="" alt="">
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+	
+$("#btnEdit").click(function(){
+	var sImagePath = $("#imgOriginal").attr('src');
+	console.log(sImagePath);
+	$("#imgEdit").attr( 'src' , sImagePath );
+});
+
+
+</script>
+
+
+
+</body>
+</html>

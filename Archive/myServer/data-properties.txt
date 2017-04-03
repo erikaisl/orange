@@ -1,0 +1,12 @@
+[
+    {
+        "sUniqueId": 100000,
+        "sAddress": "Address One",
+        "iPrice": 400
+    },
+    {
+        "sUniqueId": 100001,
+        "sAddress": "123",
+        "iPrice": "123"
+    }
+]

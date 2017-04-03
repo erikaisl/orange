@@ -1,0 +1,14 @@
+// prevents right clicks uses it for going back instead
+	/*
+	$(".wdw").contextmenu(function(event){
+	 $(".wdw").hide();
+	 $("#wdw-property-menu").show();
+	 event.preventDefault();
+	 });*/
+// prevents right clicks uses it for going back instead
+	
+	$(".wdw").contextmenu(function(event){
+	 $(".wdw").hide();
+	 $("#wdw-property-menu").show();
+	 event.preventDefault();
+	 });

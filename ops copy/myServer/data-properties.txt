@@ -1,0 +1,14 @@
+[
+    {
+        "iUniqueId": 100000,
+        "sAddress": "Norreport",
+        "iPrice": "9 000 000",
+        "iSize": "25m2"
+    },
+    {
+        "iUniqueId": 100001,
+        "sAddress": "Erikavej",
+        "iPrice": "6 000 000",
+        "iSize": "35m2"
+    }
+]

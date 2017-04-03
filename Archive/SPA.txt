@@ -1,0 +1,295 @@
+var iLastUserId;
+var sUserType;
+var jAdminInfo = {};
+
+// Before anything would happen, check if there is superadmin:
+fnCheckSuperAdmin();
+
+
+
+// Registration button is clicked:
+$(document).on("click", ".signUpButtons", function(){
+	
+	// Select the parent of parent of clicked button (this):
+	"use strict";
+	var sIdOfTheFormsParent = $(this).parent().parent().attr('id');
+	
+	// Get users:
+	var sURL = 'myServer/data-users.txt';
+	$.ajax({
+		"method"	: "post",
+		"url"		: sURL,
+		"dataType"	: "json"
+	})
+	.done(function( ajUsers ){
+		
+		// Check if there is any user registered into 'data-users.txt':
+		if( ajUsers.length < 1 ){
+			$('#signupUserId').val('1');
+		}
+		
+		// If we don't have a user yet:
+		else {
+			
+			// Loop through all the users:
+			for(var i = 0; i < ajUsers.length; i++){
+				
+				// Get the user:
+				var jUser = ajUsers[i];
+				//console.log( jUser.id );
+				
+				// Get user's id:
+				var sUserID = jUser.sUserID;
+				
+				// Change last ID's value:
+				iLastUserId = sUserID;
+			}
+			
+			// Increase new user's id with '1':
+			var iNewId = iLastUserId + 1;
+			
+			// Change input's value:
+			$('#signupUserId').val(iNewId);
+		}
+		
+		var sBackEndUrl = 'myServer/api-signup.php';
+		var sDataToPass = $( '#' + sIdOfTheFormsParent ).serialize();
+		$.ajax({
+			"method"	: "post",
+			"url"		: sBackEndUrl,
+			"data"		: sDataToPass,
+			"dataType"	: "json"
+		})
+		.done(function( sResponse ){
+			console.log( sResponse );
+			
+			alert( sResponse.message );
+			
+			// Show only the login window:
+			fnShowSelectedWindow( '#loginWindow' );
+		});
+	});
+	
+});
+
+// Login button is clicked:
+$(document).on("click", "#logInButton", function() {
+	
+	// Getting user list:
+	var sURL = 'myServer/data-users.txt';
+	$.ajax({
+		"method"	: "post",
+		"url"		: sURL,
+		"dataType"	: "json"
+	})
+	.done(function( ajUsers ){
+		
+		var sUsernameInputValue = $('#loginUsername').val();
+		var sPasswordInputValue = $('#loginPassword').val();
+		var sMessage, bLoggedIn;
+		
+		// Looping through all users to compare their username and password:
+		for(var i = 0; i < ajUsers.length; i++){
+			var jUser = ajUsers[i];
+			
+			// If they match:
+			if( sUsernameInputValue === jUser.sUsername && sPasswordInputValue === jUser.sPassword ){
+				
+				// Change message variable to 'logged in':
+				sMessage = 'logged in';
+				bLoggedIn = true;
+				sUserType = jUser.userType;
+				
+				// Only here you break the for loop so you dont continue the loop:
+				break;
+				
+			// If they dont match:
+			} else {
+				
+				// Change message variable to 'not logged in':
+				sMessage = 'not logged in';
+				bLoggedIn = false;
+			}
+		}
+		
+		// Check if user is logged in:
+		if( bLoggedIn ){
+			
+			// Add info to the admin JSON object:
+			jAdminInfo.user_type = sUserType;
+			
+			// Show only the homepage window:
+			fnShowSelectedWindow( '#homePageWindow' );
+		}
+	});
+});
+
+// When "go-to-registration" is clicked:
+$(document).on("click", "#go-to-registration", function(){
+	
+	// Show only the selected window (sign up):
+	fnShowSelectedWindow( "#signUpWindow" );
+});
+
+// When "go-to-login" is clicked:
+$(document).on("click", "#go-to-login", function(){
+	
+	// Show only the selected window (login):
+	fnShowSelectedWindow( "#loginWindow" );
+});
+
+
+
+
+
+
+
+
+
+
+
+
+// Function which checks if there is super admin already:
+function fnCheckSuperAdmin(){
+	
+	// Get users:
+	var sURL = 'myServer/data-users.txt';
+	$.ajax({
+		"method"	: "post",
+		"url"		: sURL,
+		"dataType"	: "json"
+	})
+	.done(function( ajUsers ){
+		
+		// Check if there is any user registered into 'data-users.txt':
+		if( ajUsers.length < 1 ){
+
+			// Show selected window (super admin register):
+			fnShowSelectedWindow( '#superAdminRegisterWindow' );
+		}
+		
+		// If there is any user:
+		else {
+
+			// Show login window:
+			fnShowSelectedWindow( '#loginWindow' );
+		}
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+// Function which shows ONLY the selected "window":
+function fnShowSelectedWindow( sTheWindowToShow ){
+	
+	// Hide EVERY SINGLE ELEMENT which has the class of 'login-window-wraps':
+	$('.login-window-wraps').css("display","none");
+	
+	// Show ONLY THE ELEMENT which has the ID we passed through function parameter:
+	$( sTheWindowToShow ).css("display","block");
+	
+	
+	
+	
+	
+	
+	
+	// If the window is:
+	if( sTheWindowToShow === '#homePageWindow' ){
+		var sHomePageTitle;
+		
+		// Check admin user type:
+		if( jAdminInfo.user_type === 'superAdmin' ){
+			sHomePageTitle = 'Welcome super admin!';
+		}
+		
+		else if( jAdminInfo.user_type === 'normal' ){
+			sHomePageTitle = 'Welcome user!';
+		}
+		
+		$('#home-page-title').text( sHomePageTitle );
+			
+		// Refresh item lists:
+		fnRefreshItemList( 'user-list' );
+		fnRefreshItemList( 'property-list' );
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+// Function which refreshes item lists:
+function fnRefreshItemList( sItemListType ){
+	"use strict";
+	
+	var sURL;
+	var sBluePrint =
+		'<li class="item-list-items">' +
+			'<div class="item-pictures"></div>' +
+			'<div class="item-titles">{{item-title}}</div>' +
+			'<div class="item-managing-icons">' +
+				'<div class="edit-buttons fa fa-edit fa-fw"></div>' +
+				'<div class="delete-buttons fa fa-trash fa-fw"></div>' +
+			'</div>' +
+		'</li>';
+	
+	// Check type of item list:
+	switch( sItemListType ){
+		case 'user-list':
+			sURL = 'myServer/data-users.txt';
+			break;
+		case 'property-list':
+			sURL = 'myServer/data-properties.txt';
+			break;
+	}
+	
+	/* TAKE A LOOK AT THIS! :D and dont forget this comment :D
+	if( sItemListType === 'user-list' ){
+		var sURL = 'myServer/data-users.txt';
+	} else if( sItemListType === 'property-list' ) {
+		var sURL = 'myServer/data-properties.txt';
+	}*/
+	
+	$.ajax({
+		"method"	: "post",
+		"url"		: sURL,
+		"dataType"	: "json"
+	})
+	.done(function( ajReceivedData ){
+		
+		// Loop through all the users:
+		for(var i = 0; i < ajReceivedData.length; i++){
+			var sItemTitle;
+			var jItem = ajReceivedData[i];
+		
+			var sBlueprintCopy = sBluePrint;
+			switch( sItemListType ){
+				case 'user-list':
+					sItemTitle = jItem.sUsername;
+					break;
+				case 'property-list':
+					sItemTitle = jItem.sAddress;
+					break;
+			}
+			sBlueprintCopy = sBlueprintCopy.replace('{{item-title}}', sItemTitle);
+	
+			// Add a list item for each single user:
+			$('#' + sItemListType).append(sBlueprintCopy);
+		}
+	});
+}

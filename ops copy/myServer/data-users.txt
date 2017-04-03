@@ -1,0 +1,9 @@
+[
+    {
+        "iUserID": 1,
+        "sUsername": "a",
+        "sPassword": "a",
+        "userType": "superAdmin",
+        "sEmail": "a@a.dk"
+    }
+]
