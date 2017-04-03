@@ -81,6 +81,16 @@ $(document).on("click", ".signUpButtons", function(){
 	
 				// give response:
 				fnShowResponseBar( sResponse.status );
+				
+				// if everything was okay server side:
+				if( sResponse.statusOk === true ){
+					
+					// Give notification:
+					fnNotifyMe( 'Welcome on board!' )
+					
+					// Play sound:
+					fnPlaySound();
+				}
 			});
 		}
 		else {
@@ -242,6 +252,9 @@ $(document).on("click", ".submitButtons", function(){
 				
 				// Blink title every 1000ms, 6 times:
 				fnBlinkTitle( '! NEW PROPERTY IS CREATED !', 1000, 6 );
+				
+				// Play sound:
+				fnPlaySound();
 			}
 			
 			// Get response from the server and pass it to response bar showing function:
@@ -924,6 +937,14 @@ function fnBlinkTitle( sMessage, iHowOftenInMs, iHowManyBlinks ){
 			
 		}, iHowOftenInMs * i );
 	}	
+}
+
+function fnPlaySound() {
+	'use strict';
+	var oSound		= new Audio( 'myServer/files/337049__shinephoenixstormcrow__320655-rhodesmas-level-up-01.mp3' );
+	
+	// Play the sound:
+	oSound.play();
 }
 
 
