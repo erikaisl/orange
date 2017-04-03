@@ -183,6 +183,7 @@ $(document).on("click", ".submitButtons", function(){
 	
 	var sClickedButtonId = $(this).attr('id');
 	var sClickedButtonRole = $(this).attr('data-button-role');
+	var bBlinkTitle = false; // by default
 	var sFormWrapId;
 	var sFormIdToValidate;
 	var sApiFile;
@@ -206,16 +207,16 @@ $(document).on("click", ".submitButtons", function(){
 		
 		if( sClickedButtonRole === 'new-item' ){
 			sApiFile = 'api-create-property.php';
+			bBlinkTitle = true;
 		} else if( sClickedButtonRole === 'update-item' ){
 			sApiFile = 'api-update-property.php';
 		}
-		
 	}
 	
 	// Validate the selected form's inputs:
 	if( fnValidation( sFormIdToValidate ) === true ){
 		
-		// Register new user:
+		// Register new item:
 		var sApiLink = 'myServer/' + sApiFile;
 		var sFormWrapSelector = '#' + sFormWrapId; // <- will be either '#user-form' or '#property-form'
 		var sFormToValidateSelector = '#' + sFormIdToValidate; // <- will be either '#create-user-column2' or '#create-property-column2'
@@ -229,10 +230,15 @@ $(document).on("click", ".submitButtons", function(){
 		})
 		.done(function( jData ){
 			
+			// If everything was okay server side:
 			if( jData.statusOk === true ){
 				fnShowSelectedWindow('#homePageWindow');
 				
+				// Give desktop notification:
 				fnNotifyMe( jData.statusMessage );
+				
+				// Blink title every 1000ms, 6 times:
+				fnBlinkTitle( '! NEW PROPERTY IS CREATED !', 1000, 6 );
 			}
 			
 			// Get response from the server and pass it to response bar showing function:
@@ -889,14 +895,32 @@ function fnNotifyMe( message ) {
 
 
 
-fnBlinkTitle();
+
 // Page title blinking
-function fnBlinkTitle( message ){
-	var iHowManyBlinks = 3;
+function fnBlinkTitle( sMessage, iHowOftenInMs, iHowManyBlinks ){
+	var sOriginalTitle = $(document).find("title").text();
 	
 	for( var i = 0; i < iHowManyBlinks; i++ ){
+		switchTitle(i);
 	}
-		
+	
+	function switchTitle(i){
+		setTimeout(function(){
+			
+			// If 'i' is even number:
+			if( i % 2 === 0 ){
+				document.title = sMessage;
+			}
+			
+			// If 'i' is odd number:
+			else {
+				document.title = sOriginalTitle;
+			}
+			console.log( document.title );
+			console.log( i );
+			
+		}, iHowOftenInMs * i );
+	}	
 }
 
 
