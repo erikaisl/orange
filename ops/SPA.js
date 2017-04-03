@@ -207,7 +207,10 @@ $(document).on("click", ".submitButtons", function(){
 		
 		if( sClickedButtonRole === 'new-item' ){
 			sApiFile = 'api-create-property.php';
+			
+			// Enable title blinking if we create a new property:
 			bBlinkTitle = true;
+			
 		} else if( sClickedButtonRole === 'update-item' ){
 			sApiFile = 'api-update-property.php';
 		}
