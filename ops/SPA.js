@@ -321,6 +321,9 @@ $(document).on("click", ".delete-icons", function(){
 // Clicking on converter icons:
 $(document).on("click", ".convert-icons", function(){
 	
+	var sUrl = 'myServer/api-convert-user.php';
+	var user_id = $(this).attr('data-item-id');
+	
 	// If it is a circle:
 	if($(this).hasClass('fa-circle-o')){
 		
@@ -328,7 +331,18 @@ $(document).on("click", ".convert-icons", function(){
 		$(this).removeClass('fa-circle-o');
 		$(this).addClass('fa-check');
 		
-		fnShowResponseBar( 'User successfully converted into admin' );
+		// Exchange data with user converter api:
+		$.ajax({
+			"method" : "post",
+			"url" : sUrl,
+			"data" : { "convert_into" : "admin", "user_id" : user_id },
+			"dataType" : "json"
+		})
+		.done(function( sResponse ){
+		
+			// Give response
+			fnShowResponseBar( sResponse.statusMessage );
+		});
 	}
 	
 	// If it is a checkmark:
@@ -338,7 +352,18 @@ $(document).on("click", ".convert-icons", function(){
 		$(this).removeClass('fa-check');
 		$(this).addClass('fa-circle-o');
 		
-		fnShowResponseBar( 'User successfully converted back to normal user' );
+		// Exchange data with user converter api:
+		$.ajax({
+			"method" : "post",
+			"url" : sUrl,
+			"data" : { "convert_into" : "normal", "user_id" : user_id },
+			"dataType" : "json"
+		})
+		.done(function( sResponse ){
+		
+			// Give response
+			fnShowResponseBar( sResponse.statusMessage );
+		});
 	}
 });
 
@@ -695,7 +720,7 @@ function fnRefreshItemList( sItemListType ){
 	          <div class="link fa fa-edit fa-fw edit-icons" data-item-type="{{data-item-type-edit}}" data-item-id="{{data-item-id-edit}}"></div>\
 	        </td>\
 	        <td data-th="Convert">\
-	          <div class="link fa {{convert-icon}} fa-fw convert-icons" data-item-type="{{data-item-type-convert}}" data-item-id="{{data-item-id-convert}}"></div>\
+	          <div class="link fa {{convert-icon}} fa-fw convert-icons" data-item-id="{{data-item-id-convert}}"></div>\
 	        </td>\
 		</tr>';
 		  
@@ -767,6 +792,7 @@ function fnRefreshItemList( sItemListType ){
 			sBlueprintCopy_tableRows = sBlueprintCopy_tableRows.replace('{{data-item-type-delete}}', sItemType);
 			sBlueprintCopy_tableRows = sBlueprintCopy_tableRows.replace('{{data-item-id-edit}}', sItemId);
 			sBlueprintCopy_tableRows = sBlueprintCopy_tableRows.replace('{{data-item-type-edit}}', sItemType);
+			sBlueprintCopy_tableRows = sBlueprintCopy_tableRows.replace('{{data-item-id-convert}}', sItemId);
 			
 			// Set differend admin converter icons and row style for normal users and admins:
 			if( sItemType === 'user' ){
