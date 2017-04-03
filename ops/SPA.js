@@ -895,7 +895,7 @@ function fnBlinkTitle( message ){
 	var iHowManyBlinks = 3;
 	
 	for( var i = 0; i < iHowManyBlinks; i++ ){
-		alert();
+		
 	}
 		
 }
