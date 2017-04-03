@@ -3,7 +3,7 @@
         "iUserID": 2,
         "sUsername": "b",
         "sPassword": "b",
-        "userType": "normal",
+        "userType": "admin",
         "sEmail": "b@a.dk"
     },
     {

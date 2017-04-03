@@ -803,6 +803,8 @@ function fnRefreshItemList( sItemListType ){
 					sBlueprintCopy_tableRows = sBlueprintCopy_tableRows.replace('{{convert-icon}}', 'fa-check');
 					sBlueprintCopy_tableRows = sBlueprintCopy_tableRows.replace('{{delete-icon}}', 'fa-trash'); // since trash logo is not defined in superadmin case, it won't appear in super admin row
 				}
+			} else {
+				sBlueprintCopy_tableRows = sBlueprintCopy_tableRows.replace('{{delete-icon}}', 'fa-trash'); // define trash icon for property list
 			}
 	
 			// Add table rows on each looping:
