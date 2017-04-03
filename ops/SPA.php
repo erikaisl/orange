@@ -12,7 +12,7 @@
         <div id="response-bar">
             <div id="message-title"></div>
             <div id="message-content"></div>
-        </div>
+        </div>f
     </div>
 
         <h3 id="loggedInUsername"></h3>
