@@ -912,7 +912,7 @@ function fnNotifyMe( message ) {
 
 
 
-// Page title blinking
+// Page title blinking trigger:
 function fnBlinkTitle( sMessage ){
 	var sOriginalTitle = $(document).find("title").text();
 	var iHowOftenInMs = 1000; // change title every 1sec
@@ -920,25 +920,26 @@ function fnBlinkTitle( sMessage ){
 	// Switch title 6 times:
 	for( var i = 0; i < 6; i++ ){
 		switchTitle(i);
-	}
-	
-	function switchTitle(i){
-		setTimeout(function(){
-			
-			// If 'i' is even number:
-			if( i % 2 === 0 ){
-				document.title = sMessage;
-			}
-			
-			// If 'i' is odd number:
-			else {
-				document.title = sOriginalTitle;
-			}
-			console.log( document.title );
-			console.log( i );
-			
-		}, iHowOftenInMs * i );
 	}	
+}
+	
+// Page title switcher:
+function switchTitle(i){
+	setTimeout(function(){
+		
+		// If 'i' is even number:
+		if( i % 2 === 0 ){
+			document.title = sMessage;
+		}
+		
+		// If 'i' is odd number:
+		else {
+			document.title = sOriginalTitle;
+		}
+		console.log( document.title );
+		console.log( i );
+		
+	}, iHowOftenInMs * i );
 }
 
 function fnPlaySound() {
