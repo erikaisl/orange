@@ -251,7 +251,7 @@ $(document).on("click", ".submitButtons", function(){
 				fnNotifyMe( jData.statusMessage );
 				
 				// Blink title every 1000ms, 6 times:
-				fnBlinkTitle( '! NEW PROPERTY IS CREATED !', 1000, 6 );
+				fnBlinkTitle( '! NEW PROPERTY IS CREATED !' );
 				
 				// Play sound:
 				fnPlaySound();
@@ -913,10 +913,12 @@ function fnNotifyMe( message ) {
 
 
 // Page title blinking
-function fnBlinkTitle( sMessage, iHowOftenInMs, iHowManyBlinks ){
+function fnBlinkTitle( sMessage ){
 	var sOriginalTitle = $(document).find("title").text();
+	var iHowOftenInMs = 1000; // change title every 1sec
 	
-	for( var i = 0; i < iHowManyBlinks; i++ ){
+	// Switch title 6 times:
+	for( var i = 0; i < 6; i++ ){
 		switchTitle(i);
 	}
 	
